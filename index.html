@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon Training 💪</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+header {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  padding: 40px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 42px;
+  margin: 0 0 10px;
+}
+
+header p {
+  margin: 0;
+  opacity: .9;
+}
+
+.container {
+  width: 92%;
+  max-width: 1000px;
+  margin: 30px auto;
+}
+
+.progress-box {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+}
+
+.progress {
+  height: 15px;
+  background: #334155;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #22c55e;
+  transition: .3s;
+}
+
+.day {
+  background: #1e293b;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  border: 1px solid #334155;
+}
+
+.day-header {
+  padding: 18px;
+  background: #273449;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-header h2 {
+  margin: 0;
+}
+
+.tag {
+  background: #2563eb;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.exercise {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  border-top: 1px solid #334155;
+}
+
+.exercise input {
+  width: 20px;
+  height: 20px;
+  accent-color: #22c55e;
+}
+
+.exercise-name {
+  font-weight: bold;
+}
+
+.reps {
+  display: block;
+  color: #94a3b8;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.complete {
+  padding: 15px 18px;
+  border-top: 1px solid #334155;
+}
+
+.complete label {
+  cursor: pointer;
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.timer {
+  background: #1e293b;
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.timer h2 {
+  margin-top: 0;
+}
+
+#time {
+  font-size: 55px;
+  font-weight: bold;
+  margin: 15px;
+}
+
+button {
+  border: none;
+  padding: 11px 16px;
+  border-radius: 10px;
+  margin: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #2563eb;
+  color: white;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.reset {
+  background: #dc2626;
+}
+
+.reset:hover {
+  background: #b91c1c;
+}
+
+.info {
+  background: #172554;
+  border: 1px solid #1d4ed8;
+  padding: 18px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #64748b;
+}
+
+@media(max-width:600px) {
+  header h1 {
+    font-size: 32px;
+  }
+
+  .day-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #time {
+    font-size: 45px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>💪 Mon Training</h1>
+  <p>Mon programme musculation de la semaine</p>
+</header>
+
+<div class="container">
+
+  <div class="info">
+    <strong>🎯 Objectif</strong><br>
+    Devenir plus fort, développer tes muscles et rester actif.
+    La perte de graisse se fait progressivement sur l'ensemble du corps :
+    on ne peut pas choisir précisément la zone où elle disparaît.
+  </div>
+
+  <div class="progress-box">
+    <strong>📊 Progression de la semaine</strong>
+    <span id="counter">0 / 7 séances terminées</span>
+
+    <div class="progress">
+      <div class="progress-bar" id="progress"></div>
+    </div>
+  </div>
+
+  <!-- LUNDI -->
+  <div class="day">
+    <div class="day-header">
+      <h2>🔵 Lundi</h2>
+      <span class="tag">Haut du corps + abdos</span>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Pompes</span><span class="reps">3 × 8–15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Tractions</span><span class="reps">3 séries</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Dips</span><span class="reps">3 × 6–12</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Rowing haltère 5 kg</span><span class="reps">3 × 12–15 par côté</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Élévations latérales</span><span class="reps">2 × 12–15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Planche</span><span class="reps">3 × 20–40 secondes</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Dead bug</span><span class="reps">3 × 8–12 par côté</span></div>
+    </div>
+
+    <div class="complete">
+      <label>
+        <input type="checkbox" class="day-check">
+        ✅ Séance terminée
+      </label>
+    </div>
+  </div>
+
+  <!-- MARDI -->
+  <div class="day">
+    <div class="day-header">
+      <h2>🟢 Mardi</h2>
+      <span class="tag">Jambes + cardio</span>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Squats</span><span class="reps">3 × 12–20</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Fentes</span><span class="reps">3 × 8–12 par jambe</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Pont fessier</span><span class="reps">3 × 12–20</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Mollets debout</span><span class="reps">3 × 15–25</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Marche rapide / footing avec le chien 🐕</span><span class="reps">20–30 min</span></div>
+    </div>
+
+    <div class="complete">
+      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
+    </div>
+  </div>
+
+  <!-- MERCREDI -->
+  <div class="day">
+    <div class="day-header">
+      <h2>🟠 Mercredi</h2>
+      <span class="tag">Full body</span>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Squats</span><span class="reps">3 × 15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Pompes</span><span class="reps">3 × 10–15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Tractions</span><span class="reps">3 séries</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Fentes</span><span class="reps">3 × 10 par jambe</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Rowing haltère</span><span class="reps">3 × 12 par côté</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Dips</span><span class="reps">2 × 8–12</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Planche</span><span class="reps">3 × 30 secondes</span></div>
+    </div>
+
+    <div class="complete">
+      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
+    </div>
+  </div>
+
+  <!-- JEUDI -->
+  <div class="day">
+    <div class="day-header">
+      <h2>🟣 Jeudi</h2>
+      <span class="tag">Dos + bras + abdos</span>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Tractions</span><span class="reps">4 séries</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Rowing haltère</span><span class="reps">3 × 12–15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Curl biceps</span><span class="reps">3 × 10–15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Dips</span><span class="reps">3 × 8–12</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Extension triceps</span><span class="reps">2 × 10–15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Planche latérale</span><span class="reps">2 × 20–30 s par côté</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Bird-dog</span><span class="reps">3 × 8–12 par côté</span></div>
+    </div>
+
+    <div class="complete">
+      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
+    </div>
+  </div>
+
+  <!-- VENDREDI -->
+  <div class="day">
+    <div class="day-header">
+      <h2>🔴 Vendredi</h2>
+      <span class="tag">Cardio</span>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Marche tranquille</span><span class="reps">5 min</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Marche rapide / footing avec le chien 🐕</span><span class="reps">15–25 min</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Retour au calme</span><span class="reps">5 min</span></div>
+    </div>
+
+    <div class="complete">
+      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
+    </div>
+  </div>
+
+  <!-- SAMEDI -->
+  <div class="day">
+    <div class="day-header">
+      <h2>🟡 Samedi</h2>
+      <span class="tag">Full body</span>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Squats</span><span class="reps">3 × 12–20</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Pompes</span><span class="reps">3 × 8–15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Tractions</span><span class="reps">3 séries</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Fentes</span><span class="reps">3 × 10 par jambe</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Rowing haltère</span><span class="reps">3 × 12–15</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Dips</span><span class="reps">2–3 × 8–12</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Planche</span><span class="reps">3 × 30–45 s</span></div>
+    </div>
+
+    <div class="complete">
+      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
+    </div>
+  </div>
+
+  <!-- DIMANCHE -->
+  <div class="day">
+    <div class="day-header">
+      <h2>⚪ Dimanche</h2>
+      <span class="tag">Repos</span>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Repos 😴</span><span class="reps">Pas de séance obligatoire</span></div>
+    </div>
+
+    <div class="exercise">
+      <input type="checkbox">
+      <div><span class="exercise-name">Promenade avec le chien 🐕</span><span class="reps">Optionnelle et tranquille</span></div>
+    </div>
+
+    <div class="complete">
+      <label><input type="checkbox" class="day-check"> ✅ Semaine terminée</label>
+    </div>
+  </div>
+
+  <!-- TIMER -->
+  <div class="timer">
+    <h2>⏱️ Chronomètre de repos</h2>
+
+    <div id="time">01:30</div>
+
+    <button onclick="setTimer(60)">1 min</button>
+    <button onclick="setTimer(90)">1 min 30</button>
+    <button onclick="setTimer(120)">2 min</button>
+
+    <br>
+
+    <button onclick="startTimer()">▶️ Démarrer</button>
+    <button onclick="pauseTimer()">⏸️ Pause</button>
+    <button onclick="resetTimer()">🔄 Reset</button>
+  </div>
+
+  <br>
+
+  <button class="reset" onclick="resetWeek()">
+    🗑️ Réinitialiser la semaine
+  </button>
+
+</div>
+
+<footer>
+  Mon Training 💪 · Tes cases sont sauvegardées automatiquement sur ton appareil.
+</footer>
+
+<script>
+
+// ============================
+// SAUVEGARDE DES CASES
+// ============================
+
+const checkboxes = document.querySelectorAll("input[type='checkbox']");
+const saved = JSON.parse(localStorage.getItem("training") || "{}");
+
+checkboxes.forEach((box, index) => {
+
+  if (saved[index]) {
+    box.checked = true;
+  }
+
+  box.addEventListener("change", () => {
+
+    const data = {};
+
+    document.querySelectorAll("input[type='checkbox']")
+      .forEach((b, i) => {
+        data[i] = b.checked;
+      });
+
+    localStorage.setItem("training", JSON.stringify(data));
+
+    updateProgress();
+  });
+});
+
+
+// ============================
+// PROGRESSION
+// ============================
+
+function updateProgress() {
+
+  const days = document.querySelectorAll(".day-check");
+
+  let completed = 0;
+
+  days.forEach(day => {
+    if (day.checked) {
+      completed++;
+    }
+  });
+
+  const percentage = Math.round((completed / 7) * 100);
+
+  document.getElementById("counter").textContent =
+    completed + " / 7 séances terminées";
+
+  document.getElementById("progress").style.width =
+    percentage + "%";
+}
+
+updateProgress();
+
+
+// ============================
+// TIMER
+// ============================
+
+let seconds = 90;
+let timer = null;
+
+function updateTimer() {
+
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+
+  document.getElementById("time").textContent =
+    String(minutes).padStart(2, "0") +
+    ":" +
+    String(secs).padStart(2, "0");
+}
+
+function setTimer(value) {
+
+  clearInterval(timer);
+
+  seconds = value;
+
+  updateTimer();
+}
+
+function startTimer() {
+
+  if (timer) return;
+
+  timer = setInterval(() => {
+
+    if (seconds <= 0) {
+
+      clearInterval(timer);
+      timer = null;
+
+      alert("🔥 Repos terminé !");
+
+      return;
+    }
+
+    seconds--;
+
+    updateTimer();
+
+  }, 1000);
+}
+
+function pauseTimer() {
+
+  clearInterval(timer);
+
+  timer = null;
+}
+
+function resetTimer() {
+
+  clearInterval(timer);
+
+  timer = null;
+
+  seconds = 90;
+
+  updateTimer();
+}
+
+
+// ============================
+// RESET SEMAINE
+// ============================
+
+function resetWeek() {
+
+  if (!confirm("Réinitialiser toutes les cases ?")) {
+    return;
+  }
+
+  localStorage.removeItem("training");
+
+  document
+    .querySelectorAll("input[type='checkbox']")
+    .forEach(box => box.checked = false);
+
+  updateProgress();
+}
+
+</script>
+
+</body>
+  </html>
