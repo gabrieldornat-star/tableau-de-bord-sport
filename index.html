@@ -2,384 +2,449 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f172a">
 
 <title>Mon Training 💪</title>
 
 <style>
-
 *{
-box-sizing:border-box;
+  box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#0f172a;
-color:white;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0f172a;
+  color:white;
 }
 
 header{
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-padding:40px 20px;
-text-align:center;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  padding:35px 20px;
+  text-align:center;
 }
 
 header h1{
-font-size:42px;
-margin:0 0 8px;
+  margin:0 0 8px;
+  font-size:38px;
 }
 
 header p{
-margin:0;
-opacity:.9;
+  margin:0;
+  opacity:.9;
 }
 
 .container{
-width:92%;
-max-width:1000px;
-margin:30px auto;
+  width:92%;
+  max-width:950px;
+  margin:25px auto;
 }
 
 .card{
-background:#1e293b;
-border:1px solid #334155;
-border-radius:20px;
-padding:20px;
-margin-bottom:25px;
+  background:#1e293b;
+  border:1px solid #334155;
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:22px;
 }
 
 .info{
-background:#172554;
-border-color:#1d4ed8;
-line-height:1.5;
+  background:#172554;
+  border-color:#1d4ed8;
+  line-height:1.5;
+}
+
+/* DATE */
+
+.date-box{
+  text-align:center;
+}
+
+.date-box label{
+  display:block;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+input[type="date"]{
+  background:#0f172a;
+  color:white;
+  border:1px solid #475569;
+  border-radius:10px;
+  padding:12px;
+  font-size:16px;
+}
+
+.selected-date{
+  margin-top:15px;
+  font-size:18px;
+  font-weight:bold;
 }
 
 /* STATS */
 
 .stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-margin-top:15px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 
 .stat{
-background:#273449;
-padding:15px;
-border-radius:15px;
-text-align:center;
+  background:#273449;
+  padding:15px;
+  border-radius:15px;
+  text-align:center;
 }
 
 .stat strong{
-display:block;
-font-size:27px;
+  display:block;
+  font-size:28px;
 }
 
 .stat span{
-color:#94a3b8;
-font-size:13px;
+  color:#94a3b8;
+  font-size:13px;
 }
 
 /* PROGRESSION */
 
 .progress{
-height:15px;
-background:#334155;
-border-radius:20px;
-overflow:hidden;
-margin-top:12px;
+  height:15px;
+  background:#334155;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:12px;
 }
 
 .progress-fill{
-height:100%;
-width:0%;
-background:#22c55e;
-transition:.3s;
+  height:100%;
+  width:0%;
+  background:#22c55e;
+  transition:.3s;
 }
 
 /* CALENDRIER */
 
 .calendar-top{
-display:flex;
-justify-content:space-between;
-align-items:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .calendar-top button{
-font-size:20px;
-padding:7px 13px;
+  font-size:20px;
+  padding:7px 13px;
 }
 
 .month-title{
-font-size:20px;
-font-weight:bold;
-text-transform:capitalize;
+  font-size:20px;
+  font-weight:bold;
+  text-transform:capitalize;
 }
 
 .weekdays,
 .calendar{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:6px;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
 }
 
 .weekdays{
-margin-top:20px;
-color:#94a3b8;
-font-size:12px;
-text-align:center;
+  margin-top:20px;
+  color:#94a3b8;
+  font-size:12px;
+  text-align:center;
 }
 
 .calendar{
-margin-top:8px;
+  margin-top:8px;
 }
 
 .calendar-day{
-min-height:58px;
-background:#273449;
-border:1px solid #334155;
-border-radius:10px;
-padding:7px;
-cursor:pointer;
-position:relative;
+  min-height:58px;
+  background:#273449;
+  border:1px solid #334155;
+  border-radius:10px;
+  padding:7px;
+  cursor:pointer;
+  position:relative;
 }
 
 .calendar-day:hover{
-background:#334155;
+  background:#334155;
 }
 
 .calendar-day.empty{
-background:transparent;
-border:0;
-cursor:default;
+  background:transparent;
+  border:0;
+  cursor:default;
 }
 
 .calendar-day.today{
-border:2px solid #60a5fa;
+  border:2px solid #60a5fa;
+}
+
+.calendar-day.selected{
+  outline:3px solid #a78bfa;
 }
 
 .calendar-day.green{
-background:#14532d;
-border-color:#22c55e;
+  background:#14532d;
+  border-color:#22c55e;
 }
 
 .calendar-day.red{
-background:#7f1d1d;
-border-color:#ef4444;
+  background:#7f1d1d;
+  border-color:#ef4444;
 }
 
 .calendar-day.future{
-opacity:.65;
+  opacity:.65;
 }
 
 .calendar-day .number{
-font-weight:bold;
+  font-weight:bold;
 }
 
 .calendar-day .status{
-position:absolute;
-right:6px;
-bottom:5px;
-font-size:12px;
+  position:absolute;
+  right:6px;
+  bottom:5px;
 }
 
-/* JOUR */
+/* PROGRAMME */
 
 .day{
-background:#1e293b;
-border:1px solid #334155;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:18px;
+  background:#1e293b;
+  border:1px solid #334155;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:18px;
 }
 
 .day.green{
-border-color:#22c55e;
+  border-color:#22c55e;
 }
 
 .day.red{
-border-color:#ef4444;
+  border-color:#ef4444;
 }
 
 .day-header{
-padding:18px;
-background:#273449;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  padding:18px;
+  background:#273449;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .day-header h2{
-margin:0;
+  margin:0;
 }
 
 .tag{
-background:#2563eb;
-padding:6px 10px;
-border-radius:20px;
-font-size:12px;
+  background:#2563eb;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
 }
 
 .exercise{
-display:flex;
-align-items:center;
-gap:12px;
-padding:15px 18px;
-border-top:1px solid #334155;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px 18px;
+  border-top:1px solid #334155;
 }
 
 .exercise input{
-width:20px;
-height:20px;
-accent-color:#22c55e;
+  width:20px;
+  height:20px;
+  accent-color:#22c55e;
 }
 
 .exercise-name{
-font-weight:bold;
+  font-weight:bold;
 }
 
 .reps{
-display:block;
-color:#94a3b8;
-font-size:14px;
-margin-top:3px;
+  display:block;
+  color:#94a3b8;
+  font-size:14px;
+  margin-top:3px;
 }
 
 .complete{
-padding:16px 18px;
-border-top:1px solid #334155;
+  padding:16px 18px;
+  border-top:1px solid #334155;
 }
 
 .complete input{
-width:20px;
-height:20px;
-vertical-align:middle;
-accent-color:#22c55e;
-}
-
-.complete label{
-font-weight:bold;
+  width:20px;
+  height:20px;
+  vertical-align:middle;
+  accent-color:#22c55e;
 }
 
 .status-message{
-margin-top:10px;
-font-size:14px;
-color:#94a3b8;
+  margin-top:10px;
+  color:#cbd5e1;
+  font-size:14px;
 }
 
 /* BOUTONS */
 
 button{
-border:0;
-padding:10px 15px;
-border-radius:10px;
-cursor:pointer;
-font-weight:bold;
-background:#2563eb;
-color:white;
+  border:0;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+  background:#2563eb;
+  color:white;
 }
 
 button:hover{
-background:#1d4ed8;
+  background:#1d4ed8;
 }
 
 /* TIMER */
 
 .timer{
-text-align:center;
+  text-align:center;
 }
 
 #time{
-font-size:55px;
-font-weight:bold;
-margin:15px;
+  font-size:50px;
+  font-weight:bold;
+  margin:15px;
 }
 
 /* FOOTER */
 
 footer{
-text-align:center;
-padding:30px;
-color:#64748b;
+  text-align:center;
+  padding:30px;
+  color:#64748b;
 }
-
-/* MOBILE */
 
 @media(max-width:600px){
 
-header h1{
-font-size:32px;
-}
+  header h1{
+    font-size:31px;
+  }
 
-.stats{
-grid-template-columns:1fr;
-}
+  .stats{
+    grid-template-columns:1fr;
+  }
 
-.day-header{
-flex-direction:column;
-align-items:flex-start;
-gap:8px;
-}
+  .day-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
 
-.calendar-day{
-min-height:48px;
-font-size:13px;
-}
+  .calendar-day{
+    min-height:48px;
+    font-size:13px;
+  }
 
-#time{
-font-size:45px;
+  #time{
+    font-size:43px;
+  }
 }
-
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
-
-<h1>💪 Mon Training</h1>
-
-<p>
-Ton programme évolutif semaine après semaine
-</p>
-
+  <h1>💪 Mon Training</h1>
+  <p>Mon programme sportif personnalisé</p>
 </header>
-
 
 <div class="container">
 
-
-<!-- OBJECTIF -->
+<!-- INFOS -->
 
 <div class="card info">
 
-<strong>🎯 Ton objectif</strong>
+<strong>🎯 Objectif</strong>
 
 <br><br>
 
 Développer ta force, tes muscles et ton endurance
-tout en restant actif.
+avec un entraînement régulier.
 
 <br><br>
 
-<strong>⚠️ Règle du programme :</strong>
+<strong>📌 Fonctionnement :</strong>
 
-Une séance ratée donne simplement un malus dans
-l'application. Ce n'est pas une raison pour se punir
-ou faire une séance excessive le lendemain.
+Choisis une date ci-dessous pour consulter ou modifier
+la séance de cette journée.
+
+<br><br>
+
+🟢 Vert = séance validée à temps<br>
+🔴 Rouge = séance non validée et journée passée<br>
+🟡 Jaune = journée actuelle<br>
+⚪ Gris = journée à venir
 
 </div>
 
 
-<!-- STATS -->
+<!-- CHOIX DATE -->
+
+<div class="card date-box">
+
+<h2>📅 Choisir une date</h2>
+
+<label for="datePicker">
+Sélectionne la date de ta séance :
+</label>
+
+<input
+  type="date"
+  id="datePicker"
+>
+
+<div
+  class="selected-date"
+  id="selectedDate">
+</div>
+
+</div>
+
+
+<!-- SEMAINE -->
 
 <div class="card">
 
-<h2>📊 Mes statistiques</h2>
+<h2 id="weekTitle">
+Semaine
+</h2>
+
+<p id="weekText">
+</p>
+
+<div class="progress">
+
+<div
+  class="progress-fill"
+  id="progress">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STATISTIQUES -->
+
+<div class="card">
+
+<h2>📊 Statistiques</h2>
 
 <div class="stats">
 
@@ -395,7 +460,6 @@ Séances réussies
 
 </div>
 
-
 <div class="stat">
 
 <strong id="missedCount">
@@ -407,7 +471,6 @@ Malus
 </span>
 
 </div>
-
 
 <div class="stat">
 
@@ -426,30 +489,6 @@ Progression
 </div>
 
 
-<!-- SEMAINE -->
-
-<div class="card">
-
-<h2 id="weekTitle">
-Semaine
-</h2>
-
-<p id="weekText">
-Chargement...
-</p>
-
-<div class="progress">
-
-<div
-class="progress-fill"
-id="progress"
-></div>
-
-</div>
-
-</div>
-
-
 <!-- CALENDRIER -->
 
 <div class="card">
@@ -461,8 +500,8 @@ id="progress"
 </button>
 
 <div
-class="month-title"
-id="monthTitle">
+  class="month-title"
+  id="monthTitle">
 </div>
 
 <button onclick="changeMonth(1)">
@@ -470,7 +509,6 @@ id="monthTitle">
 </button>
 
 </div>
-
 
 <div class="weekdays">
 
@@ -484,10 +522,9 @@ id="monthTitle">
 
 </div>
 
-
 <div
-class="calendar"
-id="calendar">
+  class="calendar"
+  id="calendar">
 </div>
 
 </div>
@@ -496,7 +533,7 @@ id="calendar">
 <!-- PROGRAMME -->
 
 <h2>
-🏋️ Programme de la semaine
+🏋️ Programme
 </h2>
 
 <div id="program">
@@ -507,9 +544,7 @@ id="calendar">
 
 <div class="card timer">
 
-<h2>
-⏱️ Chronomètre de repos
-</h2>
+<h2>⏱️ Chronomètre de repos</h2>
 
 <div id="time">
 01:30
@@ -543,15 +578,12 @@ id="calendar">
 
 </div>
 
-
 </div>
-
 
 <footer>
 
-Mon Training 💪
-<br>
-Progression sauvegardée automatiquement sur cet appareil.
+Mon Training 💪<br>
+Les données sont sauvegardées sur cet appareil.
 
 </footer>
 
@@ -800,48 +832,73 @@ const programs = [
 
 
 /* =====================================================
+   SAUVEGARDE LOCALE
+===================================================== */
+
+function getData(){
+
+  return JSON.parse(
+    localStorage.getItem("monTrainingData") || "{}"
+  );
+
+}
+
+
+function saveData(data){
+
+  localStorage.setItem(
+    "monTrainingData",
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* =====================================================
    DATES
 ===================================================== */
 
 function dateKey(date){
 
-const y=date.getFullYear();
+  const y=date.getFullYear();
 
-const m=String(
-date.getMonth()+1
-).padStart(2,"0");
+  const m=String(
+    date.getMonth()+1
+  ).padStart(2,"0");
 
-const d=String(
-date.getDate()
-).padStart(2,"0");
+  const d=String(
+    date.getDate()
+  ).padStart(2,"0");
 
-return `${y}-${m}-${d}`;
+  return `${y}-${m}-${d}`;
 
 }
 
 
 function getMonday(date){
 
-const d=new Date(date);
+  const d=new Date(date);
 
-const day=d.getDay();
+  const day=d.getDay();
 
-const diff=
-day===0 ? -6 : 1-day;
+  const difference=
+    day===0 ? -6 : 1-day;
 
-d.setDate(
-d.getDate()+diff
-);
+  d.setDate(
+    d.getDate()+difference
+  );
 
-d.setHours(0,0,0,0);
+  d.setHours(0,0,0,0);
 
-return d;
+  return d;
 
 }
 
 
 /* =====================================================
-   NUMERO DE SEMAINE
+   DATE DE RÉFÉRENCE
+   La rotation des 4 programmes commence le
+   lundi 7 septembre 2026.
 ===================================================== */
 
 const baseMonday=
@@ -850,316 +907,338 @@ new Date(2026,8,7);
 
 function getWeekNumber(date){
 
-const monday=
-getMonday(date);
+  const monday=
+    getMonday(date);
 
-const difference=
-monday.getTime()-
-baseMonday.getTime();
+  const difference=
+    monday.getTime()-
+    baseMonday.getTime();
 
-const weeks=
-Math.floor(
-difference/
-(7*24*60*60*1000)
-);
+  const weeks=
+    Math.floor(
+      difference/
+      (7*24*60*60*1000)
+    );
 
-return ((weeks%4)+4)%4;
-
-}
-
-
-/* =====================================================
-   SAUVEGARDE
-===================================================== */
-
-function getData(){
-
-return JSON.parse(
-localStorage.getItem(
-"monTrainingData"
-)||"{}"
-);
-
-}
-
-
-function saveData(data){
-
-localStorage.setItem(
-"monTrainingData",
-JSON.stringify(data)
-);
+  return ((weeks%4)+4)%4;
 
 }
 
 
 /* =====================================================
-   VALIDATION D'UNE JOURNÉE
+   DATE SÉLECTIONNÉE
 ===================================================== */
 
-function isCompleted(date){
+let selectedDate=new Date();
 
-const data=getData();
+let calendarDate=new Date();
 
-const key=dateKey(date);
 
-return !!(
-data[key] &&
-data[key].completed
-);
+function setDateInput(){
+
+  document.getElementById(
+    "datePicker"
+  ).value=dateKey(selectedDate);
 
 }
 
 
-/*
-   IMPORTANT :
+function changeSelectedDate(){
 
-   Une séance est "réussie" uniquement si elle a été
-   cochée avant la fin de cette journée.
+  const value=
+    document.getElementById(
+      "datePicker"
+    ).value;
 
-   Si on la coche le lendemain, elle reste considérée
-   comme ratée.
-*/
+  if(!value)return;
+
+  selectedDate=
+    new Date(value+"T12:00:00");
+
+  calendarDate=
+    new Date(selectedDate);
+
+  renderEverything();
+
+}
+
+
+/* =====================================================
+   JOUR TERMINÉ À TEMPS
+===================================================== */
 
 function isSuccess(date){
 
-const data=getData();
+  const data=getData();
 
-const key=dateKey(date);
+  const key=dateKey(date);
 
-if(
-!data[key] ||
-!data[key].completedAt
-){
-return false;
-}
+  if(
+    !data[key] ||
+    !data[key].completedAt
+  ){
 
-const completedAt=
-new Date(data[key].completedAt);
+    return false;
 
-const deadline=
-new Date(date);
+  }
 
-deadline.setDate(
-deadline.getDate()+1
-);
+  const completedAt=
+    new Date(data[key].completedAt);
 
-deadline.setHours(0,0,0,0);
+  const endOfDay=
+    new Date(date);
 
-return completedAt < deadline;
+  endOfDay.setHours(
+    23,59,59,999
+  );
+
+  return completedAt<=endOfDay;
 
 }
 
 
 /* =====================================================
-   JOUR PASSÉ ?
+   JOUR RATÉ
 ===================================================== */
 
 function isPast(date){
 
-const today=new Date();
+  const today=new Date();
 
-today.setHours(0,0,0,0);
+  today.setHours(
+    0,0,0,0
+  );
 
-const d=new Date(date);
+  const d=new Date(date);
 
-d.setHours(0,0,0,0);
+  d.setHours(
+    0,0,0,0
+  );
 
-return d < today;
+  return d<today;
 
 }
 
-
-/* =====================================================
-   MALUS
-===================================================== */
 
 function isMissed(date){
 
-return (
-isPast(date) &&
-!isSuccess(date)
-);
+  return isPast(date) && !isSuccess(date);
 
 }
 
 
 /* =====================================================
-   RENDRE LE PROGRAMME
+   AFFICHER LA DATE
+===================================================== */
+
+function renderSelectedDate(){
+
+  const text=
+    selectedDate.toLocaleDateString(
+      "fr-FR",
+      {
+        weekday:"long",
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      }
+    );
+
+  document.getElementById(
+    "selectedDate"
+  ).textContent=
+    "📌 "+text;
+
+}
+
+
+/* =====================================================
+   PROGRAMME DE LA SEMAINE
 ===================================================== */
 
 function renderProgram(){
 
-const today=new Date();
+  const week=
+    getWeekNumber(selectedDate);
 
-const week=
-getWeekNumber(today);
+  const program=
+    programs[week];
 
-const program=
-programs[week];
+  document.getElementById(
+    "weekTitle"
+  ).textContent=
+    `📅 Semaine ${week+1} / 4`;
 
-document.getElementById(
-"weekTitle"
-).textContent=
-`📅 Semaine ${week+1} / 4`;
+  document.getElementById(
+    "weekText"
+  ).textContent=
+    `Programme ${week+1} · Les exercices changent automatiquement toutes les 4 semaines.`;
 
-document.getElementById(
-"weekText"
-).textContent=
-`Cette semaine utilise le programme ${week+1}. Le programme change automatiquement chaque lundi.`;
+  const container=
+    document.getElementById("program");
 
-const container=
-document.getElementById("program");
-
-container.innerHTML="";
+  container.innerHTML="";
 
 
-const monday=
-getMonday(today);
+  const monday=
+    getMonday(selectedDate);
+
+  const selectedDay=
+    selectedDate.getDay();
+
+  const selectedIndex=
+    selectedDay===0 ? 6 : selectedDay-1;
 
 
-program.forEach(
-(day,index)=>{
+  program.forEach(
+    (day,index)=>{
 
-const date=
-new Date(monday);
+      const date=
+        new Date(monday);
 
-date.setDate(
-monday.getDate()+index
-);
+      date.setDate(
+        monday.getDate()+index
+      );
 
-const article=
-document.createElement("div");
+      const success=
+        isSuccess(date);
 
-article.className="day";
+      const missed=
+        isMissed(date);
 
-const success=
-isSuccess(date);
+      const article=
+        document.createElement("div");
 
-const missed=
-isMissed(date);
+      article.className="day";
 
-if(success){
-article.classList.add("green");
-}
+      if(success)
+        article.classList.add("green");
 
-if(missed){
-article.classList.add("red");
-}
-
-article.innerHTML=`
-
-<div class="day-header">
-
-<h2>
-${getEmoji(index)}
-${day[0]}
-</h2>
-
-<span class="tag">
-${day[1]}
-</span>
-
-</div>
-
-`;
-
-day[2].forEach(
-(exercise,exerciseIndex)=>{
-
-const row=
-document.createElement("div");
-
-row.className="exercise";
-
-row.innerHTML=`
-
-<input
-type="checkbox"
-class="exercise-check"
-data-day="${index}"
-data-exercise="${exerciseIndex}"
->
-
-<div>
-
-<span class="exercise-name">
-${exercise[0]}
-</span>
-
-<span class="reps">
-${exercise[1]}
-</span>
-
-</div>
-
-`;
-
-article.appendChild(row);
-
-});
+      if(missed)
+        article.classList.add("red");
 
 
-const complete=
-document.createElement("div");
+      article.innerHTML=`
 
-complete.className="complete";
+        <div class="day-header">
 
-let status="";
+          <h2>
+            ${getEmoji(index)}
+            ${day[0]}
+          </h2>
 
-if(success){
+          <span class="tag">
+            ${day[1]}
+          </span>
 
-status=
-"🟢 Séance validée à temps";
+        </div>
 
-}else if(missed){
-
-status=
-"🔴 Journée ratée — +1 malus";
-
-}else if(
-dateKey(date)===dateKey(today)
-){
-
-status=
-"🟡 Journée en cours";
-
-}else{
-
-status=
-"⚪ Journée à venir";
-
-}
+      `;
 
 
-complete.innerHTML=`
+      day[2].forEach(
+        (exercise,exerciseIndex)=>{
 
-<label>
+          const row=
+            document.createElement("div");
 
-<input
-type="checkbox"
-class="day-check"
-data-day="${index}"
->
+          row.className="exercise";
 
-✅ J'ai terminé ma séance
+          row.innerHTML=`
 
-</label>
+            <input
+              type="checkbox"
+              class="exercise-check"
+              data-exercise="${exerciseIndex}"
+            >
 
-<div class="status-message">
-${status}
-</div>
+            <div>
 
-`;
+              <span class="exercise-name">
+                ${exercise[0]}
+              </span>
 
-article.appendChild(complete);
+              <span class="reps">
+                ${exercise[1]}
+              </span>
 
-container.appendChild(article);
+            </div>
 
-});
+          `;
+
+          article.appendChild(row);
+
+        });
 
 
-loadChecks();
+      const complete=
+        document.createElement("div");
+
+      complete.className="complete";
+
+
+      let status="";
+
+      if(success){
+
+        status=
+          "🟢 Séance validée à temps";
+
+      }else if(missed){
+
+        status=
+          "🔴 Séance non validée · +1 malus";
+
+      }else if(
+        dateKey(date)===dateKey(new Date())
+      ){
+
+        status=
+          "🟡 Journée actuelle";
+
+      }else if(
+        date<new Date()
+      ){
+
+        status=
+          "⚪ Aucune validation";
+
+      }else{
+
+        status=
+          "⚪ Journée à venir";
+
+      }
+
+
+      complete.innerHTML=`
+
+        <label>
+
+          <input
+            type="checkbox"
+            class="day-check"
+          >
+
+          ✅ J'ai terminé ma séance
+
+        </label>
+
+        <div class="status-message">
+          ${status}
+        </div>
+
+      `;
+
+
+      article.appendChild(complete);
+
+      container.appendChild(article);
+
+    });
+
+
+  loadSelectedDateChecks();
 
 }
 
@@ -1170,148 +1249,156 @@ loadChecks();
 
 function getEmoji(index){
 
-return [
-"🔵",
-"🟢",
-"🟠",
-"🟣",
-"🔴",
-"🟡",
-"⚪"
-][index];
+  return [
+    "🔵",
+    "🟢",
+    "🟠",
+    "🟣",
+    "🔴",
+    "🟡",
+    "⚪"
+  ][index];
 
 }
 
 
 /* =====================================================
-   CHARGER LES CASES
+   CHARGER LA DATE SÉLECTIONNÉE
 ===================================================== */
 
-function loadChecks(){
+function loadSelectedDateChecks(){
 
-const today=
-new Date();
+  const key=
+    dateKey(selectedDate);
 
-const key=
-dateKey(today);
-
-const data=
-getData()[key] || {};
-
-document.querySelectorAll(
-".exercise-check"
-).forEach(box=>{
-
-box.checked=
-data[
-"exercise-"+box.dataset.exercise
-]===true;
-
-});
+  const data=
+    getData()[key] || {};
 
 
-document.querySelectorAll(
-".day-check"
-).forEach(box=>{
+  document.querySelectorAll(
+    ".exercise-check"
+  ).forEach(
+    (box,index)=>{
 
-box.checked=
-data.completed===true;
+      box.checked=
+        data[
+          "exercise-"+index
+        ]===true;
 
-box.addEventListener(
-"change",
-saveToday
-);
+      box.addEventListener(
+        "change",
+        saveSelectedDate
+      );
 
-});
+    });
 
 
-document.querySelectorAll(
-".exercise-check"
-).forEach(box=>{
+  const dayCheck=
+    document.querySelector(
+      ".day-check"
+    );
 
-box.addEventListener(
-"change",
-saveToday
-);
 
-});
+  if(dayCheck){
+
+    dayCheck.checked=
+      data.completed===true;
+
+    /*
+      On empêche de modifier une ancienne
+      journée ratée après coup.
+    */
+
+    const today=
+      new Date();
+
+    today.setHours(0,0,0,0);
+
+    const chosen=
+      new Date(selectedDate);
+
+    chosen.setHours(0,0,0,0);
+
+
+    if(chosen<today && !isSuccess(chosen)){
+
+      dayCheck.disabled=true;
+
+    }
+
+
+    dayCheck.addEventListener(
+      "change",
+      saveSelectedDate
+    );
+
+  }
 
 }
 
 
 /* =====================================================
-   SAUVEGARDER AU MOMENT DU CLIC
+   SAUVEGARDER UNE DATE
 ===================================================== */
 
-function saveToday(){
+function saveSelectedDate(){
 
-const today=
-new Date();
+  const key=
+    dateKey(selectedDate);
 
-const key=
-dateKey(today);
+  const data=
+    getData();
 
-const data=
-getData();
+  if(!data[key]){
 
-if(!data[key]){
+    data[key]={};
 
-data[key]={};
-
-}
+  }
 
 
-document.querySelectorAll(
-".exercise-check"
-).forEach(box=>{
+  document.querySelectorAll(
+    ".exercise-check"
+  ).forEach(
+    (box,index)=>{
 
-data[key][
-"exercise-"+box.dataset.exercise
-]=box.checked;
+      data[key][
+        "exercise-"+index
+      ]=box.checked;
 
-});
-
-
-const dayCheck=
-document.querySelector(
-".day-check"
-);
+    });
 
 
-if(dayCheck){
-
-if(
-dayCheck.checked &&
-!data[key].completed
-){
-
-/*
-  On enregistre l'heure exacte du clic.
-*/
-
-data[key].completed=true;
-
-data[key].completedAt=
-new Date().toISOString();
-
-}else if(
-!dayCheck.checked
-){
-
-data[key].completed=false;
-
-}
-
-}
+  const dayCheck=
+    document.querySelector(
+      ".day-check"
+    );
 
 
-saveData(data);
+  if(
+    dayCheck &&
+    dayCheck.checked
+  ){
 
-renderProgram();
+    /*
+      Première validation :
+      on enregistre l'heure exacte.
+    */
 
-renderCalendar();
+    if(!data[key].completedAt){
 
-updateStats();
+      data[key].completedAt=
+        new Date().toISOString();
+
+    }
+
+    data[key].completed=true;
+
+  }
+
+
+  saveData(data);
+
+  renderEverything();
 
 }
 
@@ -1320,173 +1407,204 @@ updateStats();
    CALENDRIER
 ===================================================== */
 
-let calendarDate=
-new Date();
-
-
 function renderCalendar(){
 
-const calendar=
-document.getElementById(
-"calendar"
-);
+  const calendar=
+    document.getElementById(
+      "calendar"
+    );
 
-calendar.innerHTML="";
-
-
-const year=
-calendarDate.getFullYear();
-
-const month=
-calendarDate.getMonth();
+  calendar.innerHTML="";
 
 
-document.getElementById(
-"monthTitle"
-).textContent=
-new Date(
-year,
-month,
-1
-).toLocaleDateString(
-"fr-FR",
-{
-month:"long",
-year:"numeric"
-);
+  const year=
+    calendarDate.getFullYear();
+
+  const month=
+    calendarDate.getMonth();
 
 
-const first=
-new Date(
-year,
-month,
-1
-);
-
-let start=
-first.getDay();
-
-start=
-start===0 ? 6 : start-1;
-
-
-const total=
-new Date(
-year,
-month+1,
-0
-).getDate();
+  document.getElementById(
+    "monthTitle"
+  ).textContent=
+    new Date(
+      year,
+      month,
+      1
+    ).toLocaleDateString(
+      "fr-FR",
+      {
+        month:"long",
+        year:"numeric"
+      }
+    );
 
 
-const todayKey=
-dateKey(new Date());
+  const first=
+    new Date(
+      year,
+      month,
+      1
+    );
+
+  let start=
+    first.getDay();
+
+  start=
+    start===0 ? 6 : start-1;
 
 
-for(let i=0;i<start;i++){
-
-const empty=
-document.createElement("div");
-
-empty.className=
-"calendar-day empty";
-
-calendar.appendChild(empty);
-
-}
+  const total=
+    new Date(
+      year,
+      month+1,
+      0
+    ).getDate();
 
 
-for(let day=1;day<=total;day++){
+  for(let i=0;i<start;i++){
 
-const date=
-new Date(
-year,
-month,
-day
-);
+    const empty=
+      document.createElement("div");
 
-const key=
-dateKey(date);
+    empty.className=
+      "calendar-day empty";
 
-const cell=
-document.createElement("div");
+    calendar.appendChild(empty);
 
-cell.className=
-"calendar-day";
-
-const success=
-isSuccess(date);
-
-const missed=
-isMissed(date);
-
-if(success){
-
-cell.classList.add("green");
-
-}
-
-if(missed){
-
-cell.classList.add("red");
-
-}
-
-if(key===todayKey){
-
-cell.classList.add("today");
-
-}
-
-if(date>new Date()){
-
-cell.classList.add("future");
-
-}
+  }
 
 
-let status="";
+  const today=
+    new Date();
 
-if(success){
-
-status="🟢";
-
-}else if(missed){
-
-status="🔴";
-
-}else if(key===todayKey){
-
-status="🟡";
-
-}
+  today.setHours(
+    0,0,0,0
+  );
 
 
-cell.innerHTML=`
+  for(let day=1;day<=total;day++){
 
-<span class="number">
-${day}
-</span>
+    const date=
+      new Date(
+        year,
+        month,
+        day
+      );
 
-<span class="status">
-${status}
-</span>
+    const cell=
+      document.createElement("div");
 
-`;
-
-calendar.appendChild(cell);
-
-}
-
-}
+    cell.className=
+      "calendar-day";
 
 
-function changeMonth(amount){
+    if(
+      dateKey(date)===
+      dateKey(today)
+    ){
 
-calendarDate.setMonth(
-calendarDate.getMonth()+amount
-);
+      cell.classList.add(
+        "today"
+      );
 
-renderCalendar();
+    }
+
+
+    if(
+      dateKey(date)===
+      dateKey(selectedDate)
+    ){
+
+      cell.classList.add(
+        "selected"
+      );
+
+    }
+
+
+    if(isSuccess(date)){
+
+      cell.classList.add(
+        "green"
+      );
+
+    }
+
+
+    if(isMissed(date)){
+
+      cell.classList.add(
+        "red"
+      );
+
+    }
+
+
+    if(date>today){
+
+      cell.classList.add(
+        "future"
+      );
+
+    }
+
+
+    let status="";
+
+    if(isSuccess(date)){
+
+      status="🟢";
+
+    }else if(isMissed(date)){
+
+      status="🔴";
+
+    }else if(
+      dateKey(date)===dateKey(today)
+    ){
+
+      status="🟡";
+
+    }
+
+
+    cell.innerHTML=`
+
+      <span class="number">
+        ${day}
+      </span>
+
+      <span class="status">
+        ${status}
+      </span>
+
+    `;
+
+
+    cell.onclick=function(){
+
+      selectedDate=
+        new Date(
+          year,
+          month,
+          day,
+          12
+        );
+
+      document.getElementById(
+        "datePicker"
+      ).value=
+        dateKey(selectedDate);
+
+      renderEverything();
+
+    };
+
+
+    calendar.appendChild(cell);
+
+  }
 
 }
 
@@ -1497,72 +1615,96 @@ renderCalendar();
 
 function updateStats(){
 
-const data=
-getData();
+  const monday=
+    getMonday(selectedDate);
 
-const today=
-new Date();
-
-const monday=
-getMonday(today);
-
-let success=0;
-
-let missed=0;
+  let success=0;
+  let missed=0;
 
 
-for(let i=0;i<7;i++){
+  for(let i=0;i<7;i++){
 
-const date=
-new Date(monday);
+    const date=
+      new Date(monday);
 
-date.setDate(
-monday.getDate()+i
-);
+    date.setDate(
+      monday.getDate()+i
+    );
 
-if(isSuccess(date)){
 
-success++;
+    if(isSuccess(date)){
+
+      success++;
+
+    }
+
+
+    if(isMissed(date)){
+
+      missed++;
+
+    }
+
+  }
+
+
+  /*
+    Le dimanche de repos n'est pas compté
+    comme une séance obligatoire.
+  */
+
+  const totalTrainingDays=6;
+
+  const percentage=
+    Math.min(
+      100,
+      Math.round(
+        success/
+        totalTrainingDays*
+        100
+      )
+    );
+
+
+  document.getElementById(
+    "completedCount"
+  ).textContent=
+    success;
+
+
+  document.getElementById(
+    "missedCount"
+  ).textContent=
+    missed;
+
+
+  document.getElementById(
+    "percentage"
+  ).textContent=
+    percentage+"%";
+
+
+  document.getElementById(
+    "progress"
+  ).style.width=
+    percentage+"%";
 
 }
 
-if(isMissed(date)){
 
-missed++;
+/* =====================================================
+   TOUT ACTUALISER
+===================================================== */
 
-}
+function renderEverything(){
 
-}
+  renderSelectedDate();
 
+  renderProgram();
 
-const percentage=
-Math.round(
-success/7*100
-);
+  renderCalendar();
 
-
-document.getElementById(
-"completedCount"
-).textContent=
-success;
-
-
-document.getElementById(
-"missedCount"
-).textContent=
-missed;
-
-
-document.getElementById(
-"percentage"
-).textContent=
-percentage+"%";
-
-
-document.getElementById(
-"progress"
-).style.width=
-percentage+"%";
+  updateStats();
 
 }
 
@@ -1578,121 +1720,126 @@ let timer=null;
 
 function updateTimer(){
 
-const minutes=
-Math.floor(seconds/60);
+  const minutes=
+    Math.floor(seconds/60);
 
-const secs=
-seconds%60;
+  const secs=
+    seconds%60;
 
-document.getElementById(
-"time"
-).textContent=
+  document.getElementById(
+    "time"
+  ).textContent=
 
-String(minutes).padStart(2,"0")
-+
-":"
-+
-String(secs).padStart(2,"0");
+    String(minutes).padStart(2,"0")
+    +":"
+    +
+    String(secs).padStart(2,"0");
 
 }
 
 
 function setTimer(value){
 
-clearInterval(timer);
+  clearInterval(timer);
 
-timer=null;
+  timer=null;
 
-seconds=value;
+  seconds=value;
 
-updateTimer();
+  updateTimer();
 
 }
 
 
 function startTimer(){
 
-if(timer)return;
+  if(timer)return;
 
-timer=
-setInterval(
-()=>{
+  timer=
+    setInterval(
+      function(){
 
-if(seconds<=0){
+        if(seconds<=0){
 
-clearInterval(timer);
+          clearInterval(timer);
 
-timer=null;
+          timer=null;
 
-alert(
-"🔥 Repos terminé !"
-);
+          alert(
+            "🔥 Repos terminé !"
+          );
 
-return;
+          return;
 
-}
+        }
 
-seconds--;
+        seconds--;
 
-updateTimer();
+        updateTimer();
 
-},
-1000
-);
+      },
+      1000
+    );
 
 }
 
 
 function pauseTimer(){
 
-clearInterval(timer);
+  clearInterval(timer);
 
-timer=null;
+  timer=null;
 
 }
 
 
 function resetTimer(){
 
-clearInterval(timer);
+  clearInterval(timer);
 
-timer=null;
+  timer=null;
 
-seconds=90;
+  seconds=90;
 
-updateTimer();
+  updateTimer();
 
 }
 
 
 /* =====================================================
-   DÉMARRAGE
+   INITIALISATION
 ===================================================== */
 
-renderProgram();
+document.getElementById(
+  "datePicker"
+).addEventListener(
+  "change",
+  changeSelectedDate
+);
 
-renderCalendar();
+setDateInput();
 
-updateStats();
+renderEverything();
 
 updateTimer();
 
 
 /*
-   Actualise automatiquement les couleurs
-   lorsqu'on garde la page ouverte jusqu'à minuit.
+  Actualisation automatique toutes les minutes.
+  Cela permet notamment de transformer la journée
+  en rouge après minuit.
 */
 
 setInterval(
-()=>{
-renderProgram();
-renderCalendar();
-updateStats();
-},
-60000
+  function(){
+
+    renderEverything();
+
+  },
+  60000
 );
 
 </script>
 
 </body>
-  </html>
+   </html>
