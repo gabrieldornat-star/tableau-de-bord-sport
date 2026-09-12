@@ -2,679 +2,1695 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f172a">
+
 <title>Mon Training 💪</title>
 
 <style>
-* {
-  box-sizing: border-box;
+
+*{
+box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
 }
 
-header {
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  padding: 40px 20px;
-  text-align: center;
+header{
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+padding:40px 20px;
+text-align:center;
 }
 
-header h1 {
-  font-size: 42px;
-  margin: 0 0 10px;
+header h1{
+font-size:42px;
+margin:0 0 8px;
 }
 
-header p {
-  margin: 0;
-  opacity: .9;
+header p{
+margin:0;
+opacity:.9;
 }
 
-.container {
-  width: 92%;
-  max-width: 1000px;
-  margin: 30px auto;
+.container{
+width:92%;
+max-width:1000px;
+margin:30px auto;
 }
 
-.progress-box {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 18px;
-  margin-bottom: 25px;
+.card{
+background:#1e293b;
+border:1px solid #334155;
+border-radius:20px;
+padding:20px;
+margin-bottom:25px;
 }
 
-.progress {
-  height: 15px;
-  background: #334155;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 12px;
+.info{
+background:#172554;
+border-color:#1d4ed8;
+line-height:1.5;
 }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: #22c55e;
-  transition: .3s;
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-top:15px;
 }
 
-.day {
-  background: #1e293b;
-  border-radius: 18px;
-  margin-bottom: 18px;
-  overflow: hidden;
-  border: 1px solid #334155;
+.stat{
+background:#273449;
+padding:15px;
+border-radius:15px;
+text-align:center;
 }
 
-.day-header {
-  padding: 18px;
-  background: #273449;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.stat strong{
+display:block;
+font-size:27px;
 }
 
-.day-header h2 {
-  margin: 0;
+.stat span{
+color:#94a3b8;
+font-size:13px;
 }
 
-.tag {
-  background: #2563eb;
-  padding: 6px 10px;
-  border-radius: 20px;
-  font-size: 13px;
+/* PROGRESSION */
+
+.progress{
+height:15px;
+background:#334155;
+border-radius:20px;
+overflow:hidden;
+margin-top:12px;
 }
 
-.exercise {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 15px 18px;
-  border-top: 1px solid #334155;
+.progress-fill{
+height:100%;
+width:0%;
+background:#22c55e;
+transition:.3s;
 }
 
-.exercise input {
-  width: 20px;
-  height: 20px;
-  accent-color: #22c55e;
+/* CALENDRIER */
+
+.calendar-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.exercise-name {
-  font-weight: bold;
+.calendar-top button{
+font-size:20px;
+padding:7px 13px;
 }
 
-.reps {
-  display: block;
-  color: #94a3b8;
-  font-size: 14px;
-  margin-top: 3px;
+.month-title{
+font-size:20px;
+font-weight:bold;
+text-transform:capitalize;
 }
 
-.complete {
-  padding: 15px 18px;
-  border-top: 1px solid #334155;
+.weekdays,
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:6px;
 }
 
-.complete label {
-  cursor: pointer;
-  color: #22c55e;
-  font-weight: bold;
+.weekdays{
+margin-top:20px;
+color:#94a3b8;
+font-size:12px;
+text-align:center;
 }
 
-.timer {
-  background: #1e293b;
-  border-radius: 18px;
-  padding: 25px;
-  text-align: center;
-  margin-top: 30px;
+.calendar{
+margin-top:8px;
 }
 
-.timer h2 {
-  margin-top: 0;
+.calendar-day{
+min-height:58px;
+background:#273449;
+border:1px solid #334155;
+border-radius:10px;
+padding:7px;
+cursor:pointer;
+position:relative;
 }
 
-#time {
-  font-size: 55px;
-  font-weight: bold;
-  margin: 15px;
+.calendar-day:hover{
+background:#334155;
 }
 
-button {
-  border: none;
-  padding: 11px 16px;
-  border-radius: 10px;
-  margin: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  background: #2563eb;
-  color: white;
+.calendar-day.empty{
+background:transparent;
+border:0;
+cursor:default;
 }
 
-button:hover {
-  background: #1d4ed8;
+.calendar-day.today{
+border:2px solid #60a5fa;
 }
 
-.reset {
-  background: #dc2626;
+.calendar-day.green{
+background:#14532d;
+border-color:#22c55e;
 }
 
-.reset:hover {
-  background: #b91c1c;
+.calendar-day.red{
+background:#7f1d1d;
+border-color:#ef4444;
 }
 
-.info {
-  background: #172554;
-  border: 1px solid #1d4ed8;
-  padding: 18px;
-  border-radius: 15px;
-  margin-bottom: 25px;
-  line-height: 1.5;
+.calendar-day.future{
+opacity:.65;
 }
 
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #64748b;
+.calendar-day .number{
+font-weight:bold;
 }
 
-@media(max-width:600px) {
-  header h1 {
-    font-size: 32px;
-  }
-
-  .day-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  #time {
-    font-size: 45px;
-  }
+.calendar-day .status{
+position:absolute;
+right:6px;
+bottom:5px;
+font-size:12px;
 }
+
+/* JOUR */
+
+.day{
+background:#1e293b;
+border:1px solid #334155;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:18px;
+}
+
+.day.green{
+border-color:#22c55e;
+}
+
+.day.red{
+border-color:#ef4444;
+}
+
+.day-header{
+padding:18px;
+background:#273449;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.day-header h2{
+margin:0;
+}
+
+.tag{
+background:#2563eb;
+padding:6px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+.exercise{
+display:flex;
+align-items:center;
+gap:12px;
+padding:15px 18px;
+border-top:1px solid #334155;
+}
+
+.exercise input{
+width:20px;
+height:20px;
+accent-color:#22c55e;
+}
+
+.exercise-name{
+font-weight:bold;
+}
+
+.reps{
+display:block;
+color:#94a3b8;
+font-size:14px;
+margin-top:3px;
+}
+
+.complete{
+padding:16px 18px;
+border-top:1px solid #334155;
+}
+
+.complete input{
+width:20px;
+height:20px;
+vertical-align:middle;
+accent-color:#22c55e;
+}
+
+.complete label{
+font-weight:bold;
+}
+
+.status-message{
+margin-top:10px;
+font-size:14px;
+color:#94a3b8;
+}
+
+/* BOUTONS */
+
+button{
+border:0;
+padding:10px 15px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+background:#2563eb;
+color:white;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+/* TIMER */
+
+.timer{
+text-align:center;
+}
+
+#time{
+font-size:55px;
+font-weight:bold;
+margin:15px;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:30px;
+color:#64748b;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+header h1{
+font-size:32px;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.day-header{
+flex-direction:column;
+align-items:flex-start;
+gap:8px;
+}
+
+.calendar-day{
+min-height:48px;
+font-size:13px;
+}
+
+#time{
+font-size:45px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>💪 Mon Training</h1>
-  <p>Mon programme musculation de la semaine</p>
+
+<h1>💪 Mon Training</h1>
+
+<p>
+Ton programme évolutif semaine après semaine
+</p>
+
 </header>
+
 
 <div class="container">
 
-  <div class="info">
-    <strong>🎯 Objectif</strong><br>
-    Devenir plus fort, développer tes muscles et rester actif.
-    La perte de graisse se fait progressivement sur l'ensemble du corps :
-    on ne peut pas choisir précisément la zone où elle disparaît.
-  </div>
 
-  <div class="progress-box">
-    <strong>📊 Progression de la semaine</strong>
-    <span id="counter">0 / 7 séances terminées</span>
+<!-- OBJECTIF -->
 
-    <div class="progress">
-      <div class="progress-bar" id="progress"></div>
-    </div>
-  </div>
+<div class="card info">
 
-  <!-- LUNDI -->
-  <div class="day">
-    <div class="day-header">
-      <h2>🔵 Lundi</h2>
-      <span class="tag">Haut du corps + abdos</span>
-    </div>
+<strong>🎯 Ton objectif</strong>
 
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Pompes</span><span class="reps">3 × 8–15</span></div>
-    </div>
+<br><br>
 
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Tractions</span><span class="reps">3 séries</span></div>
-    </div>
+Développer ta force, tes muscles et ton endurance
+tout en restant actif.
 
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Dips</span><span class="reps">3 × 6–12</span></div>
-    </div>
+<br><br>
 
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Rowing haltère 5 kg</span><span class="reps">3 × 12–15 par côté</span></div>
-    </div>
+<strong>⚠️ Règle du programme :</strong>
 
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Élévations latérales</span><span class="reps">2 × 12–15</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Planche</span><span class="reps">3 × 20–40 secondes</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Dead bug</span><span class="reps">3 × 8–12 par côté</span></div>
-    </div>
-
-    <div class="complete">
-      <label>
-        <input type="checkbox" class="day-check">
-        ✅ Séance terminée
-      </label>
-    </div>
-  </div>
-
-  <!-- MARDI -->
-  <div class="day">
-    <div class="day-header">
-      <h2>🟢 Mardi</h2>
-      <span class="tag">Jambes + cardio</span>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Squats</span><span class="reps">3 × 12–20</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Fentes</span><span class="reps">3 × 8–12 par jambe</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Pont fessier</span><span class="reps">3 × 12–20</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Mollets debout</span><span class="reps">3 × 15–25</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Marche rapide / footing avec le chien 🐕</span><span class="reps">20–30 min</span></div>
-    </div>
-
-    <div class="complete">
-      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
-    </div>
-  </div>
-
-  <!-- MERCREDI -->
-  <div class="day">
-    <div class="day-header">
-      <h2>🟠 Mercredi</h2>
-      <span class="tag">Full body</span>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Squats</span><span class="reps">3 × 15</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Pompes</span><span class="reps">3 × 10–15</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Tractions</span><span class="reps">3 séries</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Fentes</span><span class="reps">3 × 10 par jambe</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Rowing haltère</span><span class="reps">3 × 12 par côté</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Dips</span><span class="reps">2 × 8–12</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Planche</span><span class="reps">3 × 30 secondes</span></div>
-    </div>
-
-    <div class="complete">
-      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
-    </div>
-  </div>
-
-  <!-- JEUDI -->
-  <div class="day">
-    <div class="day-header">
-      <h2>🟣 Jeudi</h2>
-      <span class="tag">Dos + bras + abdos</span>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Tractions</span><span class="reps">4 séries</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Rowing haltère</span><span class="reps">3 × 12–15</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Curl biceps</span><span class="reps">3 × 10–15</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Dips</span><span class="reps">3 × 8–12</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Extension triceps</span><span class="reps">2 × 10–15</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Planche latérale</span><span class="reps">2 × 20–30 s par côté</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Bird-dog</span><span class="reps">3 × 8–12 par côté</span></div>
-    </div>
-
-    <div class="complete">
-      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
-    </div>
-  </div>
-
-  <!-- VENDREDI -->
-  <div class="day">
-    <div class="day-header">
-      <h2>🔴 Vendredi</h2>
-      <span class="tag">Cardio</span>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Marche tranquille</span><span class="reps">5 min</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Marche rapide / footing avec le chien 🐕</span><span class="reps">15–25 min</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Retour au calme</span><span class="reps">5 min</span></div>
-    </div>
-
-    <div class="complete">
-      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
-    </div>
-  </div>
-
-  <!-- SAMEDI -->
-  <div class="day">
-    <div class="day-header">
-      <h2>🟡 Samedi</h2>
-      <span class="tag">Full body</span>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Squats</span><span class="reps">3 × 12–20</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Pompes</span><span class="reps">3 × 8–15</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Tractions</span><span class="reps">3 séries</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Fentes</span><span class="reps">3 × 10 par jambe</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Rowing haltère</span><span class="reps">3 × 12–15</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Dips</span><span class="reps">2–3 × 8–12</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Planche</span><span class="reps">3 × 30–45 s</span></div>
-    </div>
-
-    <div class="complete">
-      <label><input type="checkbox" class="day-check"> ✅ Séance terminée</label>
-    </div>
-  </div>
-
-  <!-- DIMANCHE -->
-  <div class="day">
-    <div class="day-header">
-      <h2>⚪ Dimanche</h2>
-      <span class="tag">Repos</span>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Repos 😴</span><span class="reps">Pas de séance obligatoire</span></div>
-    </div>
-
-    <div class="exercise">
-      <input type="checkbox">
-      <div><span class="exercise-name">Promenade avec le chien 🐕</span><span class="reps">Optionnelle et tranquille</span></div>
-    </div>
-
-    <div class="complete">
-      <label><input type="checkbox" class="day-check"> ✅ Semaine terminée</label>
-    </div>
-  </div>
-
-  <!-- TIMER -->
-  <div class="timer">
-    <h2>⏱️ Chronomètre de repos</h2>
-
-    <div id="time">01:30</div>
-
-    <button onclick="setTimer(60)">1 min</button>
-    <button onclick="setTimer(90)">1 min 30</button>
-    <button onclick="setTimer(120)">2 min</button>
-
-    <br>
-
-    <button onclick="startTimer()">▶️ Démarrer</button>
-    <button onclick="pauseTimer()">⏸️ Pause</button>
-    <button onclick="resetTimer()">🔄 Reset</button>
-  </div>
-
-  <br>
-
-  <button class="reset" onclick="resetWeek()">
-    🗑️ Réinitialiser la semaine
-  </button>
+Une séance ratée donne simplement un malus dans
+l'application. Ce n'est pas une raison pour se punir
+ou faire une séance excessive le lendemain.
 
 </div>
 
+
+<!-- STATS -->
+
+<div class="card">
+
+<h2>📊 Mes statistiques</h2>
+
+<div class="stats">
+
+<div class="stat">
+
+<strong id="completedCount">
+0
+</strong>
+
+<span>
+Séances réussies
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="missedCount">
+0
+</strong>
+
+<span>
+Malus
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="percentage">
+0%
+</strong>
+
+<span>
+Progression
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SEMAINE -->
+
+<div class="card">
+
+<h2 id="weekTitle">
+Semaine
+</h2>
+
+<p id="weekText">
+Chargement...
+</p>
+
+<div class="progress">
+
+<div
+class="progress-fill"
+id="progress"
+></div>
+
+</div>
+
+</div>
+
+
+<!-- CALENDRIER -->
+
+<div class="card">
+
+<div class="calendar-top">
+
+<button onclick="changeMonth(-1)">
+‹
+</button>
+
+<div
+class="month-title"
+id="monthTitle">
+</div>
+
+<button onclick="changeMonth(1)">
+›
+</button>
+
+</div>
+
+
+<div class="weekdays">
+
+<div>Lun</div>
+<div>Mar</div>
+<div>Mer</div>
+<div>Jeu</div>
+<div>Ven</div>
+<div>Sam</div>
+<div>Dim</div>
+
+</div>
+
+
+<div
+class="calendar"
+id="calendar">
+</div>
+
+</div>
+
+
+<!-- PROGRAMME -->
+
+<h2>
+🏋️ Programme de la semaine
+</h2>
+
+<div id="program">
+</div>
+
+
+<!-- TIMER -->
+
+<div class="card timer">
+
+<h2>
+⏱️ Chronomètre de repos
+</h2>
+
+<div id="time">
+01:30
+</div>
+
+<button onclick="setTimer(60)">
+1 min
+</button>
+
+<button onclick="setTimer(90)">
+1 min 30
+</button>
+
+<button onclick="setTimer(120)">
+2 min
+</button>
+
+<br><br>
+
+<button onclick="startTimer()">
+▶️ Démarrer
+</button>
+
+<button onclick="pauseTimer()">
+⏸️ Pause
+</button>
+
+<button onclick="resetTimer()">
+🔄 Reset
+</button>
+
+</div>
+
+
+</div>
+
+
 <footer>
-  Mon Training 💪 · Tes cases sont sauvegardées automatiquement sur ton appareil.
+
+Mon Training 💪
+<br>
+Progression sauvegardée automatiquement sur cet appareil.
+
 </footer>
+
 
 <script>
 
-// ============================
-// SAUVEGARDE DES CASES
-// ============================
+/* =====================================================
+   PROGRAMMES
+===================================================== */
 
-const checkboxes = document.querySelectorAll("input[type='checkbox']");
-const saved = JSON.parse(localStorage.getItem("training") || "{}");
+const programs = [
 
-checkboxes.forEach((box, index) => {
+/* SEMAINE 1 */
 
-  if (saved[index]) {
-    box.checked = true;
-  }
+[
+["Lundi","Haut du corps",[
+["Pompes","3 × 8–15"],
+["Tractions","3 séries"],
+["Dips","3 × 6–12"],
+["Rowing haltère","3 × 12–15 / côté"],
+["Planche","3 × 30 s"]
+]],
 
-  box.addEventListener("change", () => {
+["Mardi","Jambes",[
+["Squats","3 × 12–20"],
+["Fentes","3 × 10 / jambe"],
+["Pont fessier","3 × 15"],
+["Mollets","3 × 20"],
+["Marche avec le chien 🐕","20–30 min"]
+]],
 
-    const data = {};
+["Mercredi","Full Body",[
+["Squats","3 × 15"],
+["Pompes","3 × 10"],
+["Tractions","3 séries"],
+["Fentes","3 × 10 / jambe"],
+["Rowing","3 × 12 / côté"],
+["Planche","3 × 30 s"]
+]],
 
-    document.querySelectorAll("input[type='checkbox']")
-      .forEach((b, i) => {
-        data[i] = b.checked;
-      });
+["Jeudi","Dos + bras",[
+["Tractions","4 séries"],
+["Rowing","3 × 15"],
+["Curl biceps","3 × 12"],
+["Dips","3 × 8–12"],
+["Planche latérale","2 × 30 s / côté"]
+]],
 
-    localStorage.setItem("training", JSON.stringify(data));
+["Vendredi","Cardio",[
+["Marche","5 min"],
+["Footing avec le chien 🐕","15–25 min"],
+["Retour au calme","5 min"]
+]],
 
-    updateProgress();
-  });
+["Samedi","Full Body",[
+["Squats","3 × 15"],
+["Pompes","3 × 12"],
+["Tractions","3 séries"],
+["Fentes","3 × 10"],
+["Dips","3 × 10"],
+["Planche","3 × 40 s"]
+]],
+
+["Dimanche","Repos",[
+["Repos","Récupération"],
+["Promenade tranquille 🐕","Optionnelle"]
+]]
+],
+
+
+/* SEMAINE 2 */
+
+[
+["Lundi","Poussée",[
+["Pompes larges","3 × 8–15"],
+["Dips","3 × 8–12"],
+["Pompes serrées","3 × 6–12"],
+["Élévations latérales","3 × 12–15"],
+["Planche","3 × 40 s"]
+]],
+
+["Mardi","Jambes",[
+["Squats tempo lent","3 × 12–15"],
+["Fentes arrière","3 × 10 / jambe"],
+["Squat statique","3 × 30 s"],
+["Mollets","3 × 20"],
+["Marche rapide 🐕","25–30 min"]
+]],
+
+["Mercredi","Full Body",[
+["Fentes","3 × 12 / jambe"],
+["Pompes","3 × 10–15"],
+["Tractions","3 séries"],
+["Squats","3 × 15"],
+["Rowing","3 × 15"],
+["Dead bug","3 × 10 / côté"]
+]],
+
+["Jeudi","Dos + bras",[
+["Tractions prise différente","4 séries"],
+["Rowing haltère","3 × 15"],
+["Curl marteau","3 × 12"],
+["Dips","3 × 10"],
+["Bird-dog","3 × 10 / côté"]
+]],
+
+["Vendredi","Cardio",[
+["Marche","5 min"],
+["Course / marche rapide 🐕","20–30 min"],
+["Retour au calme","5 min"]
+]],
+
+["Samedi","Full Body",[
+["Squats","3 × 20"],
+["Pompes","3 × 12"],
+["Tractions","3 séries"],
+["Fentes arrière","3 × 10"],
+["Rowing","3 × 15"],
+["Planche latérale","2 × 30 s"]
+]],
+
+["Dimanche","Repos",[
+["Repos","Récupération"],
+["Promenade 🐕","Optionnelle"]
+]]
+],
+
+
+/* SEMAINE 3 */
+
+[
+["Lundi","Haut du corps",[
+["Pompes tempo lent","3 × 8–12"],
+["Tractions","4 séries"],
+["Dips","3 × 8–12"],
+["Rowing","3 × 15"],
+["Dead bug","3 × 12 / côté"]
+]],
+
+["Mardi","Jambes",[
+["Squat sumo","3 × 15"],
+["Fentes marchées","3 × 10 / jambe"],
+["Pont fessier","3 × 20"],
+["Mollets","3 × 25"],
+["Promenade rapide 🐕","25 min"]
+]],
+
+["Mercredi","Full Body",[
+["Squats","3 × 20"],
+["Pompes","3 × 12"],
+["Tractions","3 séries"],
+["Fentes","3 × 12"],
+["Rowing","3 × 15"],
+["Planche","3 × 45 s"]
+]],
+
+["Jeudi","Bras + dos",[
+["Tractions","4 séries"],
+["Rowing","3 × 15"],
+["Curl biceps","3 × 15"],
+["Extension triceps","3 × 12"],
+["Planche latérale","3 × 25 s"]
+]],
+
+["Vendredi","Cardio",[
+["Marche","5 min"],
+["Footing / marche rapide 🐕","20–30 min"],
+["Retour au calme","5 min"]
+]],
+
+["Samedi","Full Body",[
+["Squat tempo","3 × 15"],
+["Pompes serrées","3 × 10"],
+["Tractions","3 séries"],
+["Fentes","3 × 12"],
+["Dips","3 × 10"],
+["Dead bug","3 × 12"]
+]],
+
+["Dimanche","Repos",[
+["Repos","Récupération"],
+["Promenade tranquille 🐕","Optionnelle"]
+]]
+],
+
+
+/* SEMAINE 4 */
+
+[
+["Lundi","Haut du corps",[
+["Pompes","4 × 8–15"],
+["Tractions","4 séries"],
+["Dips","3 × 8–12"],
+["Rowing","3 × 15"],
+["Planche","3 × 45 s"]
+]],
+
+["Mardi","Jambes",[
+["Squats","4 × 12–20"],
+["Fentes","3 × 12 / jambe"],
+["Squat statique","3 × 40 s"],
+["Mollets","4 × 20"],
+["Marche avec le chien 🐕","30 min"]
+]],
+
+["Mercredi","Full Body",[
+["Squats","3 × 20"],
+["Pompes","3 × 15"],
+["Tractions","3 séries"],
+["Fentes","3 × 12"],
+["Rowing","3 × 15"],
+["Dips","3 × 10"],
+["Planche","3 × 45 s"]
+]],
+
+["Jeudi","Dos + bras",[
+["Tractions","4 séries"],
+["Rowing","4 × 12–15"],
+["Curl biceps","3 × 15"],
+["Dips","3 × 12"],
+["Bird-dog","3 × 12 / côté"]
+]],
+
+["Vendredi","Cardio",[
+["Marche","5 min"],
+["Footing / marche rapide 🐕","25–30 min"],
+["Retour au calme","5 min"]
+]],
+
+["Samedi","Full Body",[
+["Squats","3 × 20"],
+["Pompes","3 × 15"],
+["Tractions","4 séries"],
+["Fentes","3 × 12"],
+["Dips","3 × 12"],
+["Planche","3 × 45 s"]
+]],
+
+["Dimanche","Repos",[
+["Repos","Récupération"],
+["Promenade tranquille 🐕","Optionnelle"]
+]]
+]
+
+];
+
+
+/* =====================================================
+   DATES
+===================================================== */
+
+function dateKey(date){
+
+const y=date.getFullYear();
+
+const m=String(
+date.getMonth()+1
+).padStart(2,"0");
+
+const d=String(
+date.getDate()
+).padStart(2,"0");
+
+return `${y}-${m}-${d}`;
+
+}
+
+
+function getMonday(date){
+
+const d=new Date(date);
+
+const day=d.getDay();
+
+const diff=
+day===0 ? -6 : 1-day;
+
+d.setDate(
+d.getDate()+diff
+);
+
+d.setHours(0,0,0,0);
+
+return d;
+
+}
+
+
+/* =====================================================
+   NUMERO DE SEMAINE
+===================================================== */
+
+const baseMonday=
+new Date(2026,8,7);
+
+
+function getWeekNumber(date){
+
+const monday=
+getMonday(date);
+
+const difference=
+monday.getTime()-
+baseMonday.getTime();
+
+const weeks=
+Math.floor(
+difference/
+(7*24*60*60*1000)
+);
+
+return ((weeks%4)+4)%4;
+
+}
+
+
+/* =====================================================
+   SAUVEGARDE
+===================================================== */
+
+function getData(){
+
+return JSON.parse(
+localStorage.getItem(
+"monTrainingData"
+)||"{}"
+);
+
+}
+
+
+function saveData(data){
+
+localStorage.setItem(
+"monTrainingData",
+JSON.stringify(data)
+);
+
+}
+
+
+/* =====================================================
+   VALIDATION D'UNE JOURNÉE
+===================================================== */
+
+function isCompleted(date){
+
+const data=getData();
+
+const key=dateKey(date);
+
+return !!(
+data[key] &&
+data[key].completed
+);
+
+}
+
+
+/*
+   IMPORTANT :
+
+   Une séance est "réussie" uniquement si elle a été
+   cochée avant la fin de cette journée.
+
+   Si on la coche le lendemain, elle reste considérée
+   comme ratée.
+*/
+
+function isSuccess(date){
+
+const data=getData();
+
+const key=dateKey(date);
+
+if(
+!data[key] ||
+!data[key].completedAt
+){
+return false;
+}
+
+const completedAt=
+new Date(data[key].completedAt);
+
+const deadline=
+new Date(date);
+
+deadline.setDate(
+deadline.getDate()+1
+);
+
+deadline.setHours(0,0,0,0);
+
+return completedAt < deadline;
+
+}
+
+
+/* =====================================================
+   JOUR PASSÉ ?
+===================================================== */
+
+function isPast(date){
+
+const today=new Date();
+
+today.setHours(0,0,0,0);
+
+const d=new Date(date);
+
+d.setHours(0,0,0,0);
+
+return d < today;
+
+}
+
+
+/* =====================================================
+   MALUS
+===================================================== */
+
+function isMissed(date){
+
+return (
+isPast(date) &&
+!isSuccess(date)
+);
+
+}
+
+
+/* =====================================================
+   RENDRE LE PROGRAMME
+===================================================== */
+
+function renderProgram(){
+
+const today=new Date();
+
+const week=
+getWeekNumber(today);
+
+const program=
+programs[week];
+
+document.getElementById(
+"weekTitle"
+).textContent=
+`📅 Semaine ${week+1} / 4`;
+
+document.getElementById(
+"weekText"
+).textContent=
+`Cette semaine utilise le programme ${week+1}. Le programme change automatiquement chaque lundi.`;
+
+const container=
+document.getElementById("program");
+
+container.innerHTML="";
+
+
+const monday=
+getMonday(today);
+
+
+program.forEach(
+(day,index)=>{
+
+const date=
+new Date(monday);
+
+date.setDate(
+monday.getDate()+index
+);
+
+const article=
+document.createElement("div");
+
+article.className="day";
+
+const success=
+isSuccess(date);
+
+const missed=
+isMissed(date);
+
+if(success){
+article.classList.add("green");
+}
+
+if(missed){
+article.classList.add("red");
+}
+
+article.innerHTML=`
+
+<div class="day-header">
+
+<h2>
+${getEmoji(index)}
+${day[0]}
+</h2>
+
+<span class="tag">
+${day[1]}
+</span>
+
+</div>
+
+`;
+
+day[2].forEach(
+(exercise,exerciseIndex)=>{
+
+const row=
+document.createElement("div");
+
+row.className="exercise";
+
+row.innerHTML=`
+
+<input
+type="checkbox"
+class="exercise-check"
+data-day="${index}"
+data-exercise="${exerciseIndex}"
+>
+
+<div>
+
+<span class="exercise-name">
+${exercise[0]}
+</span>
+
+<span class="reps">
+${exercise[1]}
+</span>
+
+</div>
+
+`;
+
+article.appendChild(row);
+
 });
 
 
-// ============================
-// PROGRESSION
-// ============================
+const complete=
+document.createElement("div");
 
-function updateProgress() {
+complete.className="complete";
 
-  const days = document.querySelectorAll(".day-check");
+let status="";
 
-  let completed = 0;
+if(success){
 
-  days.forEach(day => {
-    if (day.checked) {
-      completed++;
-    }
-  });
+status=
+"🟢 Séance validée à temps";
 
-  const percentage = Math.round((completed / 7) * 100);
+}else if(missed){
 
-  document.getElementById("counter").textContent =
-    completed + " / 7 séances terminées";
+status=
+"🔴 Journée ratée — +1 malus";
 
-  document.getElementById("progress").style.width =
-    percentage + "%";
-}
+}else if(
+dateKey(date)===dateKey(today)
+){
 
-updateProgress();
+status=
+"🟡 Journée en cours";
 
+}else{
 
-// ============================
-// TIMER
-// ============================
+status=
+"⚪ Journée à venir";
 
-let seconds = 90;
-let timer = null;
-
-function updateTimer() {
-
-  const minutes = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-
-  document.getElementById("time").textContent =
-    String(minutes).padStart(2, "0") +
-    ":" +
-    String(secs).padStart(2, "0");
-}
-
-function setTimer(value) {
-
-  clearInterval(timer);
-
-  seconds = value;
-
-  updateTimer();
-}
-
-function startTimer() {
-
-  if (timer) return;
-
-  timer = setInterval(() => {
-
-    if (seconds <= 0) {
-
-      clearInterval(timer);
-      timer = null;
-
-      alert("🔥 Repos terminé !");
-
-      return;
-    }
-
-    seconds--;
-
-    updateTimer();
-
-  }, 1000);
-}
-
-function pauseTimer() {
-
-  clearInterval(timer);
-
-  timer = null;
-}
-
-function resetTimer() {
-
-  clearInterval(timer);
-
-  timer = null;
-
-  seconds = 90;
-
-  updateTimer();
 }
 
 
-// ============================
-// RESET SEMAINE
-// ============================
+complete.innerHTML=`
 
-function resetWeek() {
+<label>
 
-  if (!confirm("Réinitialiser toutes les cases ?")) {
-    return;
-  }
+<input
+type="checkbox"
+class="day-check"
+data-day="${index}"
+>
 
-  localStorage.removeItem("training");
+✅ J'ai terminé ma séance
 
-  document
-    .querySelectorAll("input[type='checkbox']")
-    .forEach(box => box.checked = false);
+</label>
 
-  updateProgress();
+<div class="status-message">
+${status}
+</div>
+
+`;
+
+article.appendChild(complete);
+
+container.appendChild(article);
+
+});
+
+
+loadChecks();
+
 }
+
+
+/* =====================================================
+   EMOJIS
+===================================================== */
+
+function getEmoji(index){
+
+return [
+"🔵",
+"🟢",
+"🟠",
+"🟣",
+"🔴",
+"🟡",
+"⚪"
+][index];
+
+}
+
+
+/* =====================================================
+   CHARGER LES CASES
+===================================================== */
+
+function loadChecks(){
+
+const today=
+new Date();
+
+const key=
+dateKey(today);
+
+const data=
+getData()[key] || {};
+
+document.querySelectorAll(
+".exercise-check"
+).forEach(box=>{
+
+box.checked=
+data[
+"exercise-"+box.dataset.exercise
+]===true;
+
+});
+
+
+document.querySelectorAll(
+".day-check"
+).forEach(box=>{
+
+box.checked=
+data.completed===true;
+
+box.addEventListener(
+"change",
+saveToday
+);
+
+});
+
+
+document.querySelectorAll(
+".exercise-check"
+).forEach(box=>{
+
+box.addEventListener(
+"change",
+saveToday
+);
+
+});
+
+}
+
+
+/* =====================================================
+   SAUVEGARDER AU MOMENT DU CLIC
+===================================================== */
+
+function saveToday(){
+
+const today=
+new Date();
+
+const key=
+dateKey(today);
+
+const data=
+getData();
+
+if(!data[key]){
+
+data[key]={};
+
+}
+
+
+document.querySelectorAll(
+".exercise-check"
+).forEach(box=>{
+
+data[key][
+"exercise-"+box.dataset.exercise
+]=box.checked;
+
+});
+
+
+const dayCheck=
+document.querySelector(
+".day-check"
+);
+
+
+if(dayCheck){
+
+if(
+dayCheck.checked &&
+!data[key].completed
+){
+
+/*
+  On enregistre l'heure exacte du clic.
+*/
+
+data[key].completed=true;
+
+data[key].completedAt=
+new Date().toISOString();
+
+}else if(
+!dayCheck.checked
+){
+
+data[key].completed=false;
+
+}
+
+}
+
+
+saveData(data);
+
+renderProgram();
+
+renderCalendar();
+
+updateStats();
+
+}
+
+
+/* =====================================================
+   CALENDRIER
+===================================================== */
+
+let calendarDate=
+new Date();
+
+
+function renderCalendar(){
+
+const calendar=
+document.getElementById(
+"calendar"
+);
+
+calendar.innerHTML="";
+
+
+const year=
+calendarDate.getFullYear();
+
+const month=
+calendarDate.getMonth();
+
+
+document.getElementById(
+"monthTitle"
+).textContent=
+new Date(
+year,
+month,
+1
+).toLocaleDateString(
+"fr-FR",
+{
+month:"long",
+year:"numeric"
+);
+
+
+const first=
+new Date(
+year,
+month,
+1
+);
+
+let start=
+first.getDay();
+
+start=
+start===0 ? 6 : start-1;
+
+
+const total=
+new Date(
+year,
+month+1,
+0
+).getDate();
+
+
+const todayKey=
+dateKey(new Date());
+
+
+for(let i=0;i<start;i++){
+
+const empty=
+document.createElement("div");
+
+empty.className=
+"calendar-day empty";
+
+calendar.appendChild(empty);
+
+}
+
+
+for(let day=1;day<=total;day++){
+
+const date=
+new Date(
+year,
+month,
+day
+);
+
+const key=
+dateKey(date);
+
+const cell=
+document.createElement("div");
+
+cell.className=
+"calendar-day";
+
+const success=
+isSuccess(date);
+
+const missed=
+isMissed(date);
+
+if(success){
+
+cell.classList.add("green");
+
+}
+
+if(missed){
+
+cell.classList.add("red");
+
+}
+
+if(key===todayKey){
+
+cell.classList.add("today");
+
+}
+
+if(date>new Date()){
+
+cell.classList.add("future");
+
+}
+
+
+let status="";
+
+if(success){
+
+status="🟢";
+
+}else if(missed){
+
+status="🔴";
+
+}else if(key===todayKey){
+
+status="🟡";
+
+}
+
+
+cell.innerHTML=`
+
+<span class="number">
+${day}
+</span>
+
+<span class="status">
+${status}
+</span>
+
+`;
+
+calendar.appendChild(cell);
+
+}
+
+}
+
+
+function changeMonth(amount){
+
+calendarDate.setMonth(
+calendarDate.getMonth()+amount
+);
+
+renderCalendar();
+
+}
+
+
+/* =====================================================
+   STATISTIQUES
+===================================================== */
+
+function updateStats(){
+
+const data=
+getData();
+
+const today=
+new Date();
+
+const monday=
+getMonday(today);
+
+let success=0;
+
+let missed=0;
+
+
+for(let i=0;i<7;i++){
+
+const date=
+new Date(monday);
+
+date.setDate(
+monday.getDate()+i
+);
+
+if(isSuccess(date)){
+
+success++;
+
+}
+
+if(isMissed(date)){
+
+missed++;
+
+}
+
+}
+
+
+const percentage=
+Math.round(
+success/7*100
+);
+
+
+document.getElementById(
+"completedCount"
+).textContent=
+success;
+
+
+document.getElementById(
+"missedCount"
+).textContent=
+missed;
+
+
+document.getElementById(
+"percentage"
+).textContent=
+percentage+"%";
+
+
+document.getElementById(
+"progress"
+).style.width=
+percentage+"%";
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+let seconds=90;
+
+let timer=null;
+
+
+function updateTimer(){
+
+const minutes=
+Math.floor(seconds/60);
+
+const secs=
+seconds%60;
+
+document.getElementById(
+"time"
+).textContent=
+
+String(minutes).padStart(2,"0")
++
+":"
++
+String(secs).padStart(2,"0");
+
+}
+
+
+function setTimer(value){
+
+clearInterval(timer);
+
+timer=null;
+
+seconds=value;
+
+updateTimer();
+
+}
+
+
+function startTimer(){
+
+if(timer)return;
+
+timer=
+setInterval(
+()=>{
+
+if(seconds<=0){
+
+clearInterval(timer);
+
+timer=null;
+
+alert(
+"🔥 Repos terminé !"
+);
+
+return;
+
+}
+
+seconds--;
+
+updateTimer();
+
+},
+1000
+);
+
+}
+
+
+function pauseTimer(){
+
+clearInterval(timer);
+
+timer=null;
+
+}
+
+
+function resetTimer(){
+
+clearInterval(timer);
+
+timer=null;
+
+seconds=90;
+
+updateTimer();
+
+}
+
+
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
+
+renderProgram();
+
+renderCalendar();
+
+updateStats();
+
+updateTimer();
+
+
+/*
+   Actualise automatiquement les couleurs
+   lorsqu'on garde la page ouverte jusqu'à minuit.
+*/
+
+setInterval(
+()=>{
+renderProgram();
+renderCalendar();
+updateStats();
+},
+60000
+);
 
 </script>
 
